@@ -22,18 +22,17 @@ export const AppStyled = styled.div`
 
 export const Container = styled.div`
   background-color: #f4f4f4;
-  min-height:700px;
+  min-height: 700px;
 `;
 export const Head = styled.h1`
   margin: 0;
   padding: 24px;
   background-color: #2e2caa;
   color: #fff;
-  
-`
+`;
 export const ContactsStyled = styled.h2`
   background-color: #2e2caa;
-  margin:0; 
-  padding:12px;
+  margin: 0;
+  padding: 12px;
   color: #fff;
-`
+`;

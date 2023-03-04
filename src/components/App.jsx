@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import AddContact from './AddContact/AddContact';
 import ContactsList from './ContactsList/ContactsList';
 import ContactsFilter from './ContactsFilter/ContactsFilter';
-import {AppStyled, Container, Head, ContactsStyled} from './App.styled';
+import { AppStyled, Container, Head, ContactsStyled } from './App.styled';
 
 class App extends Component {
   state = {
@@ -34,7 +34,7 @@ class App extends Component {
   };
 
   onChangeFilter = e => {
-    this.setState({filter: e.currentTarget.value});
+    this.setState({ filter: e.currentTarget.value });
   };
 
   onFilterContacts = arrayContacts => {
@@ -49,17 +49,17 @@ class App extends Component {
     return (
       <AppStyled>
         <Container>
-        <Head>Phonebook</Head>
-        <AddContact onAddContact={this.onAddContact} />
-        <ContactsStyled>Contacts:</ContactsStyled>
-        <ContactsFilter
-          value={this.state.filter}
-          onChangeFilter={this.onChangeFilter}
-        />
-        <ContactsList
-          contacts={this.onFilterContacts(this.state.contacts)}
-          onDelete={this.onDeleteContact}
-        />
+          <Head>Phonebook</Head>
+          <AddContact onAddContact={this.onAddContact} />
+          <ContactsStyled>Contacts:</ContactsStyled>
+          <ContactsFilter
+            value={this.state.filter}
+            onChangeFilter={this.onChangeFilter}
+          />
+          <ContactsList
+            contacts={this.onFilterContacts(this.state.contacts)}
+            onDelete={this.onDeleteContact}
+          />
         </Container>
       </AppStyled>
     );
