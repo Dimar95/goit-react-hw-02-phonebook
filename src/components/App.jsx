@@ -1,44 +1,51 @@
-import FeedbackOptions from './FeedbackOptions';
-import Statistics from './Statistics';
-import {SectionStyled} from './Feedback.styled.jsx';
-import Section from './Section';
 import React, { Component } from 'react';
+import { nanoid } from 'nanoid';
 
-
-export class App extends Component{
-
+class App extends Component {
   state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
+    contacts: [],
+    name: '',
   };
-  onLeaveFeedback = e => {
-    const gradeValue = e.target.textContent.toLowerCase();
+
+  onChangeInput = e => {
     this.setState(prevState => {
-      return { [gradeValue]: prevState[gradeValue] + 1 };
+      return (prevState.name = e.target.value);
     });
   };
-  countTotalFeedback = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
+
+  onAddContact = e => {
+    e.preventDefault();
+    this.setState(() => {
+      return this.state.contacts.push({ name: this.state.name, id: nanoid() });
+    });
   };
 
-  countPositiveFeedbackPercentage = () => {
-    return Math.round((this.state.good / this.countTotalFeedback()) * 100);
-  };
-  render(){
-  return (
-    <SectionStyled>
-    <Section title="Please leave feedback">
-      <FeedbackOptions options={this.state} onLeaveFeedback={this.onLeaveFeedback}/>
-      </Section>
-      <Section>
-{Boolean(this.countTotalFeedback()) &&  <Statistics
-        good={this.state.good}
-        neutral={this.state.neutral}
-        bad={this.state.bad}
-        total={this.countTotalFeedback()}
-        positivePercentage={this.countPositiveFeedbackPercentage()}
-      />}
-    </Section></SectionStyled>
-  )};
-};
+  render() {
+    return (
+      <div>
+        <h1>Phonebook</h1>
+        <form onSubmit={this.onAddContact}>
+          <label htmlFor="name">Name</label>
+          <input
+            onChange={this.onChangeInput}
+            value={this.state.name}
+            type="text"
+            name="name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+          />
+          <button type="submit">Add contact</button>
+        </form>
+        <h2>Contacts:</h2>
+        <ul>
+          {this.state.contacts.map(contact => (
+            <li key={contact.id}>{contact.name}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+}
+
+export default App;
