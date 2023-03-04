@@ -7,7 +7,6 @@ class App extends Component {
     name: '',
   };
 
-  
   onChangeInput = e => {
     this.setState(prevState => {
       return (prevState.name = e.target.value);
