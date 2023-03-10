@@ -1,4 +1,5 @@
 import { Styled, Label, Input } from './ContactsFilter.styled';
+import PropTypes from 'prop-types';
 
 const ContactsFilter = ({ value, onChangeFilter }) => {
   return (
@@ -16,3 +17,8 @@ const ContactsFilter = ({ value, onChangeFilter }) => {
 };
 
 export default ContactsFilter;
+
+ContactsFilter.propTypes = {
+  value: PropTypes.string,
+  onChangeFilter: PropTypes.func
+}

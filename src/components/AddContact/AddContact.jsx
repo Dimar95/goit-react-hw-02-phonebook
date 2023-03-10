@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AddContactStyled, Label, Input, Button } from './AddContact.styled';
+import PropTypes from 'prop-types';
 
 class AddContact extends Component {
   state = {
@@ -58,3 +59,7 @@ class AddContact extends Component {
   }
 }
 export default AddContact;
+
+AddContact.propTypes = {
+  onAddContact: PropTypes.func
+}
